@@ -52,10 +52,10 @@ Check to see if the script is running
 5) The logs should contains Information Level with description of "Starting Script...", "PSCP Successful" & "Updated Last ID".
 
 
-##Initial Configuration
+## Initial Configuration
 [(Back to top)](#table-of-contents)
 
-###Config.txt
+### Config.txt
 The Configuration can be listed in any order, 
 
 SQL_MACHINE=     	//Name of the machine that contains the SQL Server                                                                                               
@@ -71,7 +71,7 @@ SCPPASS=			//User Password
 URL=				//<username>@<ipaddress>:<Folder>
 ROWS=				//no of rows to extract, 0 = *
 
-####Example of the config.txt
+#### Example of the config.txt
 ```
 SQL_MACHINE=WIN-LQTXXXXXXXV                                                                                                        
 SQL_USER=test                                                                                                        
@@ -87,12 +87,12 @@ URL=test@192.168.1.100:Documents
 ROWS=5
 ```
 
-###Counter.txt
+### Counter.txt
 *Check this .txt first if logs results is empty*
 
 LASTID=0     	//Contain the last audit event id that was extracted  
 
-####Example of the Counter.txt
+#### Example of the Counter.txt
 ```
 LASTID=0
 ```
