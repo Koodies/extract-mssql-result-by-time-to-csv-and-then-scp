@@ -1,8 +1,9 @@
-# extract-mssql-result-to-csv-and-then-scp
+# extract-mssql-result-by-time-to-csv-and-then-scp
 
 A window batch file that query a local Microsoft SQL Server 2017 using SQL authentication. 
 The results of the query will then be truncated into a .CSV format file and then send to a ssh enabled machine over SSH connection by utilizing PSCP.exe.
 * This batch script is for interaction with MSSQL Only *
+* This batch script is for timestamp only *
 
 # Table of contents
 
@@ -69,32 +70,35 @@ DELIMS=				//Delimiter used for CSV
 SCPPORT=			//SSH PORT                                  
 SCPPASS=			//User Password
 URL=				//<username>@<ipaddress>:<Folder>
-ROWS=				//no of rows to extract, 0 = *
 
 #### Example of the config.txt
 ```
-SQL_MACHINE=WIN-LQTXXXXXXXV                                                                                                        
-SQL_USER=test                                                                                                        
+SQL_MACHINE=WIN-LQTXXXXXXXV
+SQL_USER=test
 SQL_PASS=P@ssw0rd
 SQL_DB=TEST
 COUNTER_ID=AUDIT_EVENTS_ID
-QUERY_FROM=[TEST].[dbo].[AUDIT_EVENTS]                                
+QUERY_FROM=[TEST].[dbo].[AUDIT_EVENTS]
 QUERY_SELECT=AUDIT_EVENTS_ID,EVENT_TIMESTAMP,ACTOR,ACTOR_HOST,
-DELIMS=,                                                                                                                                                                             
-SCPPORT=22                                  
-SCPPASS=P@ssw0rd       
-URL=test@192.168.1.100:Documents
-ROWS=5
+DELIMS=,
+SCPPORT=22
+SCPPASS=P@ssw0rd
+URL=test@192.168.1.116:Documents
 ```
 
 ### Counter.txt
 *Check this .txt first if logs results is empty*
 
-LASTID=0     	//Contain the last audit event id that was extracted  
+LASTID=YYYY-MM-DD HH:MM:SS.000     	//Contain the last timestamp that was successfully extracted and successfully SCP
 
 #### Example of the Counter.txt
 ```
-LASTID=0
+LASTID=2021-03-04 15:10:00.000		
+```
+
+### PSCP.txt //Can be ignore
+```
+logs.csv                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%		//Contain the result of PSCP
 ```
 
 # License
